@@ -2,7 +2,7 @@ language: csharp
 solution: exercises/dotnet/TaxCalculator.sln
 before_script: "cd exercises/dotnet"
 mono: none
-dotnet: "2.1.502"
+dotnet: "5.0"
 script:
   - "dotnet restore"
   - "dotnet test"
