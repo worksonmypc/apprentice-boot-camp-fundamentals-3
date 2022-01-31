@@ -10,7 +10,7 @@ namespace TaxCalculator
 
         protected TaxCalculator() : this(DateTime.Now.Year)
         {
-
+            
         }
 
         protected TaxCalculator(int year)
