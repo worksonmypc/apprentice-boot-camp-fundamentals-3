@@ -1,4 +1,8 @@
-language: node_js
-before_install: "cd exercises/javascript"
-node_js:
-  - 10
+language: csharp
+solution: exercises/dotnet/TaxCalculator.sln
+before_script: "cd exercises/dotnet"
+mono: none
+dotnet: "2.1.502"
+script:
+  - "dotnet restore"
+  - "dotnet test"
