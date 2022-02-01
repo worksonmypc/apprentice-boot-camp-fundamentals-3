@@ -3,5 +3,6 @@
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::A0B78D6F-06F5-456D-800F-9A965A6B6510::.NETCoreApp,Version=v2.1::TaxCalculator.Tests.TaxCalculatorPetrolTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::A0B78D6F-06F5-456D-800F-9A965A6B6510::.NETCoreApp,Version=v2.1::TaxCalculator.Tests.TaxCalculatorDieselTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::A0B78D6F-06F5-456D-800F-9A965A6B6510::.NETCoreApp,Version=v2.1::TaxCalculator.Tests.TaxCalculatorAfterFirstYearForExpensiveVehicleTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

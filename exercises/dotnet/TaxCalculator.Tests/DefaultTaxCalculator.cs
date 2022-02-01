@@ -1,12 +1,14 @@
-﻿using System;
-
-namespace TaxCalculator.Tests
+﻿namespace TaxCalculator.Tests
 {
     public class DefaultTaxCalculator : TaxCalculator
     {
-        public DefaultTaxCalculator(int year) : base(year)
+        private readonly bool _isExpensiveVehiclePricingLogicEnabled;
+
+        private const int ExpensiveVehicleThreshold = 40000;
+
+        public DefaultTaxCalculator(int year, bool isExpensiveVehiclePricingLogicEnabled = false) : base(year)
         {
-            
+            _isExpensiveVehiclePricingLogicEnabled = isExpensiveVehiclePricingLogicEnabled;
         }
 
         public override int CalculateTax(Vehicle vehicle)
@@ -14,6 +16,25 @@ namespace TaxCalculator.Tests
             if (vehicle.DateOfFirstRegistration.Year == Year)
             {
                 return GetEmissionChargeForVehicle(vehicle.Co2Emissions, vehicle.FuelType);
+            }
+
+            if (_isExpensiveVehiclePricingLogicEnabled)
+            {
+                if (vehicle.ListPrice > ExpensiveVehicleThreshold)
+                {
+                    switch (vehicle.FuelType)
+                    {
+                        case FuelType.Petrol:
+                        case FuelType.Diesel:
+                            return 450;
+                        case FuelType.Electric:
+                            return 310;
+                        case FuelType.AlternativeFuel:
+                            return 440;
+                        default:
+                            return 0;
+                    }
+                }
             }
 
             return 0;
