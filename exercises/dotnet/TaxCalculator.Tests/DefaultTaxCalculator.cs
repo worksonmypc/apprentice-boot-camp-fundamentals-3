@@ -2,16 +2,10 @@
 {
     public class DefaultTaxCalculator : TaxCalculator
     {
-        private bool UseSecondPaymentTaxLogic;
-
-        private readonly bool _isExpensiveVehiclePricingLogicEnabled;
-        
         private const int ExpensiveVehicleThreshold = 40000;
 
-        public DefaultTaxCalculator(int year, bool useSecondTaxPaymentLogic = false, bool isExpensiveVehiclePricingLogicEnabled = false) : base(year)
+        public DefaultTaxCalculator(int year) : base(year)
         {
-            UseSecondPaymentTaxLogic = useSecondTaxPaymentLogic;
-            _isExpensiveVehiclePricingLogicEnabled = isExpensiveVehiclePricingLogicEnabled;
         }
 
         public override int CalculateTax(Vehicle vehicle)
@@ -21,39 +15,34 @@
                 return GetEmissionChargeForVehicle(vehicle.Co2Emissions, vehicle.FuelType);
             }
 
-            if (UseSecondPaymentTaxLogic)
+            if (vehicle.ListPrice <= ExpensiveVehicleThreshold)
             {
-                if (vehicle.ListPrice <= ExpensiveVehicleThreshold)
+                switch (vehicle.FuelType)
                 {
-                    switch (vehicle.FuelType)
-                    {
-                        case FuelType.Petrol:
-                        case FuelType.Diesel:
-                            return 140;
-                        case FuelType.AlternativeFuel:
-                            return 130;
-                        default:
-                            return 0;
-                    }
+                    case FuelType.Petrol:
+                    case FuelType.Diesel:
+                        return 140;
+                    case FuelType.AlternativeFuel:
+                        return 130;
+                    default:
+                        return 0;
                 }
             }
 
-            if (_isExpensiveVehiclePricingLogicEnabled)
+
+            if (vehicle.ListPrice > ExpensiveVehicleThreshold)
             {
-                if (vehicle.ListPrice > ExpensiveVehicleThreshold)
+                switch (vehicle.FuelType)
                 {
-                    switch (vehicle.FuelType)
-                    {
-                        case FuelType.Petrol:
-                        case FuelType.Diesel:
-                            return 450;
-                        case FuelType.Electric:
-                            return 310;
-                        case FuelType.AlternativeFuel:
-                            return 440;
-                        default:
-                            return 0;
-                    }
+                    case FuelType.Petrol:
+                    case FuelType.Diesel:
+                        return 450;
+                    case FuelType.Electric:
+                        return 310;
+                    case FuelType.AlternativeFuel:
+                        return 440;
+                    default:
+                        return 0;
                 }
             }
 
@@ -226,7 +215,7 @@
                         return 2070;
                 }
             }
-            
+
             return 0;
         }
     }
