@@ -42,7 +42,7 @@ namespace TaxCalculator.Tests
                 return 145;
 
             if (vehicle.Co2Emissions >= 111 &&
-                vehicle.Co2Emissions >= 130)
+                vehicle.Co2Emissions <= 130)
                 return 165;
 
             if (vehicle.Co2Emissions >= 131 &&
