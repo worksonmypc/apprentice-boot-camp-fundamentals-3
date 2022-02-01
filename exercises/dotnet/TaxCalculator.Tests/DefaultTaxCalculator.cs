@@ -4,9 +4,11 @@ namespace TaxCalculator.Tests
 {
     public class DefaultTaxCalculator : TaxCalculator
     {
-        public DefaultTaxCalculator(int year) : base(year)
+        private bool UseSecondPaymentTaxLogic; 
+
+        public DefaultTaxCalculator(int year, bool useSecondTaxPaymentLogic = false) : base(year)
         {
-            
+            UseSecondPaymentTaxLogic = useSecondTaxPaymentLogic;
         }
 
         public override int CalculateTax(Vehicle vehicle)
@@ -14,6 +16,20 @@ namespace TaxCalculator.Tests
             if (vehicle.DateOfFirstRegistration.Year == Year)
             {
                 return GetEmissionChargeForVehicle(vehicle.Co2Emissions, vehicle.FuelType);
+            }
+
+            if (UseSecondPaymentTaxLogic)
+            {
+                switch (vehicle.FuelType)
+                {
+                    case FuelType.Petrol:
+                    case FuelType.Diesel:
+                        return 140;
+                    case FuelType.AlternativeFuel:
+                        return 130;
+                    default:
+                        return 0;
+                }
             }
 
             return 0;
