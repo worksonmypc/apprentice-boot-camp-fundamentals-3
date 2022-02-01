@@ -30,6 +30,8 @@ namespace TaxCalculator.Tests
                         return 10;
                     case FuelType.Diesel:
                         return 25;
+                    case FuelType.AlternativeFuel:
+                        return 0;
                 }
             }
 
@@ -42,6 +44,8 @@ namespace TaxCalculator.Tests
                         return 25;
                     case FuelType.Diesel:
                         return 105;
+                    case FuelType.AlternativeFuel:
+                        return 15;
                 }
             }
 
@@ -54,6 +58,8 @@ namespace TaxCalculator.Tests
                         return 105;
                     case FuelType.Diesel:
                         return 125;
+                    case FuelType.AlternativeFuel:
+                        return 95;
                 }
             }
 
@@ -66,6 +72,8 @@ namespace TaxCalculator.Tests
                         return 125;
                     case FuelType.Diesel:
                         return 145;
+                    case FuelType.AlternativeFuel:
+                        return 115;
                 }
             }
 
@@ -78,6 +86,8 @@ namespace TaxCalculator.Tests
                         return 145;
                     case FuelType.Diesel:
                         return 165;
+                    case FuelType.AlternativeFuel:
+                        return 135;
                 }
             }
 
@@ -90,6 +100,8 @@ namespace TaxCalculator.Tests
                         return 165;
                     case FuelType.Diesel:
                         return 205;
+                    case FuelType.AlternativeFuel:
+                        return 155;
                 }
             }
 
@@ -102,6 +114,8 @@ namespace TaxCalculator.Tests
                         return 205;
                     case FuelType.Diesel:
                         return 515;
+                    case FuelType.AlternativeFuel:
+                        return 195;
                 }
             }
 
@@ -114,6 +128,8 @@ namespace TaxCalculator.Tests
                         return 515;
                     case FuelType.Diesel:
                         return 830;
+                    case FuelType.AlternativeFuel:
+                        return 505;
                 }
             }
 
@@ -126,6 +142,8 @@ namespace TaxCalculator.Tests
                         return 830;
                     case FuelType.Diesel:
                         return 1240;
+                    case FuelType.AlternativeFuel:
+                        return 820;
                 }
             }
 
@@ -138,6 +156,8 @@ namespace TaxCalculator.Tests
                         return 1240;
                     case FuelType.Diesel:
                         return 1760;
+                    case FuelType.AlternativeFuel:
+                        return 1230;
                 }
             }
 
@@ -150,11 +170,21 @@ namespace TaxCalculator.Tests
                         return 1760;
                     case FuelType.Diesel:
                         return 2070;
+                    case FuelType.AlternativeFuel:
+                        return 1750;
                 }
             }
 
             if (co2Emissions > 255)
-                return 2070;
+            {
+                switch (fuelType)
+                {
+                    case FuelType.AlternativeFuel:
+                        return 2060;
+                    default:
+                        return 2070;
+                }
+            }
             
             return 0;
         }
