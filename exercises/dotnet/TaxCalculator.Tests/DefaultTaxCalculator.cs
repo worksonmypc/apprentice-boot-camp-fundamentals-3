@@ -13,59 +13,59 @@ namespace TaxCalculator.Tests
         {
             if (vehicle.DateOfFirstRegistration.Year == Year)
             {
-                return GetEmissionChargeForVehicle(vehicle);
+                return GetEmissionChargeForVehicle(vehicle.Co2Emissions);
             }
 
             return 0;
         }
 
-        private static int GetEmissionChargeForVehicle(Vehicle vehicle)
+        private static int GetEmissionChargeForVehicle(int co2Emissions)
         {
-            if (vehicle.Co2Emissions >= 1 &&
-                vehicle.Co2Emissions <= 50)
+            if (co2Emissions >= 1 &&
+                co2Emissions <= 50)
                 return 10;
 
-            if (vehicle.Co2Emissions >= 51 &&
-                vehicle.Co2Emissions <= 75)
+            if (co2Emissions >= 51 &&
+                co2Emissions <= 75)
                 return 25;
 
-            if (vehicle.Co2Emissions >= 76 &&
-                vehicle.Co2Emissions <= 90)
+            if (co2Emissions >= 76 &&
+                co2Emissions <= 90)
                 return 105;
 
-            if (vehicle.Co2Emissions >= 91 &&
-                vehicle.Co2Emissions <= 100)
+            if (co2Emissions >= 91 &&
+                co2Emissions <= 100)
                 return 125;
 
-            if (vehicle.Co2Emissions >= 101 &&
-                vehicle.Co2Emissions <= 110)
+            if (co2Emissions >= 101 &&
+                co2Emissions <= 110)
                 return 145;
 
-            if (vehicle.Co2Emissions >= 111 &&
-                vehicle.Co2Emissions <= 130)
+            if (co2Emissions >= 111 &&
+                co2Emissions <= 130)
                 return 165;
 
-            if (vehicle.Co2Emissions >= 131 &&
-                vehicle.Co2Emissions <= 150)
+            if (co2Emissions >= 131 &&
+                co2Emissions <= 150)
                 return 205;
 
-            if (vehicle.Co2Emissions >= 151 &&
-                vehicle.Co2Emissions <= 170)
+            if (co2Emissions >= 151 &&
+                co2Emissions <= 170)
                 return 515;
 
-            if (vehicle.Co2Emissions >= 171 &&
-                vehicle.Co2Emissions <= 190)
+            if (co2Emissions >= 171 &&
+                co2Emissions <= 190)
                 return 830;
 
-            if (vehicle.Co2Emissions >= 191 &&
-                vehicle.Co2Emissions <= 225)
+            if (co2Emissions >= 191 &&
+                co2Emissions <= 225)
                 return 1240;
 
-            if (vehicle.Co2Emissions >= 226 &&
-                vehicle.Co2Emissions <= 255)
+            if (co2Emissions >= 226 &&
+                co2Emissions <= 255)
                 return 1760;
 
-            if (vehicle.Co2Emissions > 255)
+            if (co2Emissions > 255)
                 return 2070;
             
             return 0;
